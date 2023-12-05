@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * _prompt - displays prompt
+ * display_prompt - displays prompt
  */
-void _prompt(void)
+void display_prompt(void)
 {
 	write(STDOUT_FILENO, "mainajay$ ", 10);
 }
@@ -19,10 +19,10 @@ void _error(char *name, char *message)
 }
 
 /**
- * _command - executes a command
+ * execute_command - executes a command
  * @command: the command to be executed
  */
-void _command(char *command)
+void execute_command(char *command)
 {
 	pid_t pid;
 	int status;

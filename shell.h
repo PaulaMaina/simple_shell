@@ -8,9 +8,9 @@
 #include <sys/wait.h>
 #include <string.h>
 
-void _prompt(void);
+void display_prompt(void);
 void _error(char *name, char *message);
-void _command(char *command);
+void execute_command(char *command);
 int _putchar(char c);
 int _printstr(char *str);
 char *parse(char *buffer, ssize_t nchars);
