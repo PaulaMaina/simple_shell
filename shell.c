@@ -17,6 +17,17 @@ void _error(char *name, char *message)
 {
 	fprintf(stderr, "%s: %s\n", name, message);
 }
+/**
+ * input_command - a function that executes the exit command
+ * @command: the command to be executed
+ */
+void input_command(char *command)
+{
+	if (custom_strcmp(command, "exit") == 0)
+	{
+		exit(EXIT_SUCCESS);
+	}
+}
 
 /**
  * parse - splits the user input into tokens
