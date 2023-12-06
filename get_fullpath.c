@@ -23,7 +23,7 @@ char *get_fullpath(char *command)
 		while (token_path != NULL)
 		{
 			dir_length = _strlen(token_path);
-			full_path = malloc(sizeof(char) * (command_len + dir_length + 2));
+			full_path = malloc(sizeof(char) * (command_len + dir_length + 1));
 			_strcpy(full_path, token_path);
 			_strcat(full_path, "/");
 			_strcat(full_path, command);
