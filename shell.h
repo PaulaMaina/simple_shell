@@ -20,5 +20,5 @@ char *get_fullpath(char *command);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
-
+int custom_strcmp(char *s1, char s2);
 #endif
