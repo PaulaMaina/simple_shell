@@ -19,7 +19,12 @@ int main(void)
 		{	/* Display the shell prompt */
 			display_prompt();
 			read_count = getline(&buffer, &bufSize, stdin);
-			if (read_count == -1)
+			if (custom_strcmp(buffer, "exit") == 0)
+			{
+				free(buffer);
+				exit(EXIT_SUCCESS);
+			}
+			else if (read_count == -1)
 			{	/* Handle end of file condition (Ctrl + D) */
 				if (feof(stdin))
 				{
