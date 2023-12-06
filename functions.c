@@ -44,3 +44,32 @@ int _strlen(char *str)
 		;
 	return (len);
 }
+
+/**
+ * _strdup - duplicates a string
+ * @str: string to be duplicated
+ *
+ * Return: pointer to the duplicate string
+ */
+
+char *_strdup(char *str)
+{
+	char *dup_str;
+	unsigned int length, c;
+
+	if (str == NULL)
+		return (NULL);
+	length = _strlen(str);
+	dup_str = malloc(sizeof(char) * (length + 1));
+
+	for (c = 0; c < length; c++)
+	{
+		if (dup_str == NULL)
+			return (NULL);
+		dup_str[c] = str[c];
+	}
+	dup_str[c] = '\0';
+
+	return (dup_str);
+	free(dup_str);
+}

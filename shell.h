@@ -17,5 +17,8 @@ int _printstr(char *str);
 void parse(char *buffer, ssize_t nchars);
 int _strlen(char *str);
 char *get_fullpath(char *command);
+char *_strcpy(char *dest, char *src);
+char *_strcat(char *dest, char *src);
+char *_strdup(char *str);
 
 #endif

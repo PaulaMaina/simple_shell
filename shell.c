@@ -51,7 +51,7 @@ void parse(char *buffer, ssize_t nchars)
 	for (i = 0; token != NULL; i++)
 	{
 		argv[i] = malloc(sizeof(char *) * _strlen(token));
-		strcpy(argv[i], token);
+		_strcpy(argv[i], token);
 		token = strtok(NULL, delim);
 	}
 	command = get_fullpath(argv[0]);

@@ -17,17 +17,17 @@ char *get_fullpath(char *command)
 	pathname = getenv("PATH");
 	if (pathname)
 	{
-		cpy_pathname = strdup(pathname);
+		cpy_pathname = _strdup(pathname);
 		command_len = _strlen(command);
 		token_path = strtok(cpy_pathname, ":");
 		while (token_path != NULL)
 		{
 			dir_length = _strlen(token_path);
 			full_path = malloc(sizeof(char) * (command_len + dir_length + 2));
-			strcpy(full_path, token_path);
-			strcat(full_path, "/");
-			strcat(full_path, command);
-			strcat(full_path, "\0");
+			_strcpy(full_path, token_path);
+			_strcat(full_path, "/");
+			_strcat(full_path, command);
+			_strcat(full_path, "\0");
 			if (stat(full_path, &buffer) == 0)
 			{
 				free(cpy_pathname);
