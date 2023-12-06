@@ -40,6 +40,7 @@ void parse(char *buffer, ssize_t nchars)
 	char *token, *delim = " \n", *buffer_cpy = NULL;
 	int token_count, i;
 	char **argv, *command = NULL;
+	token_count = 0;
 
 	buffer_cpy = malloc(sizeof(char) * nchars);
 	if (buffer_cpy == NULL)
