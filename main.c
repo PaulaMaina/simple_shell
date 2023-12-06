@@ -14,16 +14,13 @@ int main(void)
 
 	/* Check if running interactively */
 	if (isatty(STDIN_FILENO))
-	{
-		/* INteractive mode */
+	{	/* Interactive mode */
 		while (1)
-		{
-			/* Display the shell prompt */
+		{	/* Display the shell prompt */
 			display_prompt();
 			read_count = getline(&buffer, &bufSize, stdin);
 			if (read_count == -1)
-			{
-				/* Handle end of file condition (Ctrl + D) */
+			{	/* Handle end of file condition (Ctrl + D) */
 				if (feof(stdin))
 				{
 					_putchar('\n');
@@ -38,13 +35,12 @@ int main(void)
 				}
 			}
 			buffer[read_count - 1] = '\0';
-			_printstr(buffer);
-			execute_command(buffer);
+			parse(buffer, read_count);
+			/* execute_command(buffer); */
 		}
 	}
 	else
-	{
-		/* Non-interactive mode */
+	{	/* Non-interactive mode */
 	}
 	free(buffer);
 	return (0);

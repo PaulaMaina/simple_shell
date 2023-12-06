@@ -19,51 +19,16 @@ void _error(char *name, char *message)
 }
 
 /**
- * execute_command - executes a command
- * @command: the command to be executed
- */
-void execute_command(char *command)
-{
-	pid_t pid;
-	int status;
-
-	pid = fork();
-
-	if (pid == -1)
-	{
-		perror("fork");
-		exit(EXIT_FAILURE);
-	}
-	else if (pid == 0)
-	{
-		char *argv[2];
-
-		argv[0] = command;
-		argv[1] = NULL;
-
-		execve(command, argv, NULL);
-		perror("execve");
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		waitpid(pid, &status, 0);
-	}
-}
-
-/**
  * parse - splits the user input into tokens
  * @buffer: users input
  * @nchars: number of characters in the buffer
- *
- * Return: an array of tokens
  */
 
-char *parse(char *buffer, ssize_t nchars)
+void parse(char *buffer, ssize_t nchars)
 {
 	char *token, *delim = " \n", *buffer_cpy = NULL;
 	int token_count, i;
-	char **argv;
+	char **argv, *command = NULL;
 
 	buffer_cpy = malloc(sizeof(char) * nchars);
 	if (buffer_cpy == NULL)
@@ -89,9 +54,8 @@ char *parse(char *buffer, ssize_t nchars)
 		strcpy(argv[i], token);
 		token = strtok(NULL, delim);
 	}
+	command = get_fullpath(argv[0]);
+	execute_command(command, argv);
 	free(argv);
 	free(buffer_cpy);
-	free(buffer);
-	return (*argv);
-
 }
