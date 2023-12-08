@@ -34,8 +34,7 @@ int main(void)
 				else
 				{
 					perror("Getline");
-					free(buffer);
-					exit(EXIT_FAILURE);
+					free(buffer), exit(EXIT_FAILURE);
 				}
 			}
 			buffer[read_count - 1] = '\0';
@@ -47,8 +46,6 @@ int main(void)
 		add_end_node(&env_list, "PATH=/usr/bin");
 		add_end_node(&env_list, "HOME=/home/user");
 		add_end_node(&env_list, "USER=user");
-
-
 	}
 	else
 	{	/* Non-interactive mode */
