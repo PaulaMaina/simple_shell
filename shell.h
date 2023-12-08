@@ -8,6 +8,16 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <string.h>
+/**
+ * struct list_s - singly linked list
+ * @var: string (malloc'ed string)
+ * @next: points to the next node
+ */
+typedef struct list_s
+{
+	char *var;
+	struct list_s *next;
+} list_t;
 
 void display_prompt(void);
 void _error(char *name, char *message);
@@ -22,5 +32,11 @@ char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
 int custom_strcmp(char *s1, char s2);
 void input_command(char *command);
+size_t print_list(list_t *h);
+list_t *add_end_node(list_t **head, char *str);
+int delete_nodeint_at_index(list_t **head, int index);
+void free_list_t(list_t *list);
+char *custom_strdup(char *str, int y);
+void free_double_p(char **str);
 
 #endif
