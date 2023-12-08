@@ -11,6 +11,17 @@
 
 #define BUFSIZE 1024
 
+/**
+ * struct list_s - singly linked list
+ * @var: string (malloc'ed string)
+ * @next: points to the next node
+ */
+typedef struct list_s
+{
+	char *var;
+	struct list_s *next;
+} list_t;
+
 void display_prompt(void);
 void _error(char *name, char *message);
 void execute_command(char *command, char **argv);
@@ -28,5 +39,11 @@ void fetch_line(char **line, size_t *line_size, char *buf, size_t buf_size);
 ssize_t custom_getline(char **line, size_t *line_size, FILE stream);
 void custim_memcpy(void *dest_ptr, void *src_ptr, unsigned int size);
 void *custom_realloc(void *memptr, unsigned int osize, unsigned int nsize);
+size_t print_list(list_t *h);
+list_t *add_end_node(list_t **head, char *str);
+int delete_nodeint_at_index(list_t **head, int index);
+void free_list_t(list_t *list);
+char *custom_strdup(char *str, int y);
+void free_double_p(char **str);
 
 #endif
