@@ -24,7 +24,7 @@ void fetch_line(char **line, size_t *line_size, char *buf, size_t buf_size)
 		if (buf_size > BUFSIZE)
 			*line_size = buf_size;
 		else
-			*line = BUFSIZE;
+			*line_size = BUFSIZE;
 		*line = buf;
 	}
 	else
