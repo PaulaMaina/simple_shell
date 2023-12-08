@@ -11,6 +11,8 @@ int main(void)
 	char *buffer = NULL;
 	size_t bufSize = 0;
 	ssize_t read_count;
+	char *user_var;
+	list_t *env_list;
 
 	/* Check if running interactively */
 	if (isatty(STDIN_FILENO))
@@ -43,6 +45,13 @@ int main(void)
 			parse(buffer, read_count);
 			/* execute_command(buffer); */
 		}
+		env_list = NULL;
+
+		add_end_node(&env_list, "PATH=/usr/bin");
+		add_end_node(&env_list, "HOME=/home/user");
+		add_end_node(&env_list, "USER=user");
+
+
 	}
 	else
 	{	/* Non-interactive mode */
