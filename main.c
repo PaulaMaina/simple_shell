@@ -10,8 +10,7 @@ int main(void)
 {
 	char *buffer = NULL;
 	size_t bufSize = 0;
-	ssize_t read_count;
-	/* char *user_var; */
+	ssize_t read_count;	/* char *user_var; */
 	list_t *env_list;
 
 	if (isatty(STDIN_FILENO))
@@ -30,8 +29,7 @@ int main(void)
 				if (feof(stdin))
 				{
 					_putchar('\n');
-					free(buffer);
-					exit(EXIT_SUCCESS);
+					free(buffer), exit(EXIT_SUCCESS);
 				}
 				else
 				{
