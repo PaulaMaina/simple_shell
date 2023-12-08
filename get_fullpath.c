@@ -10,7 +10,7 @@
 char *get_fullpath(char *command)
 {
 	char *pathname, *cpy_pathname;
-	char *token_path, *full_path;
+	char *token_path, *full_path, *delim = ":";
 	int command_len, dir_length;
 	struct stat buffer;
 
@@ -19,7 +19,7 @@ char *get_fullpath(char *command)
 	{
 		cpy_pathname = _strdup(pathname);
 		command_len = _strlen(command);
-		token_path = strtok(cpy_pathname, ":");
+		token_path = custom_strtok(cpy_pathname, delim);
 		while (token_path != NULL)
 		{
 			dir_length = _strlen(token_path);
@@ -36,7 +36,7 @@ char *get_fullpath(char *command)
 			else
 			{
 				free(full_path);
-				token_path = strtok(NULL, ":");
+				token_path = custom_strtok(NULL, delim);
 			}
 		}
 		free(cpy_pathname);

@@ -45,5 +45,7 @@ int delete_nodeint_at_index(list_t **head, int index);
 void free_list_t(list_t *list);
 char *custom_strdup(char *str, int y);
 void free_double_p(char **str);
+int char_compare(char input_str[], const char *delim);
+char *custom_strtok(char input_str[], const char *delim);
 
 #endif

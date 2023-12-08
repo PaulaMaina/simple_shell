@@ -50,21 +50,21 @@ void parse(char *buffer, ssize_t nchars)
 		exit(98);
 	}
 
-	strcpy(buffer_cpy, buffer);
-	token = strtok(buffer, delim);
+	_strcpy(buffer_cpy, buffer);
+	token = custom_strtok(buffer, delim);
 	while (token != NULL)
 	{
 		token_count++;
-		token = strtok(NULL, delim);
+		token = custom_strtok(NULL, delim);
 	}
 	token_count++;
 	argv = malloc(sizeof(char *) * token_count);
-	token = strtok(buffer_cpy, delim);
+	token = custom_strtok(buffer_cpy, delim);
 	for (i = 0; token != NULL; i++)
 	{
 		argv[i] = malloc(sizeof(char) * (_strlen(token) + 1));
 		_strcpy(argv[i], token);
-		token = strtok(NULL, delim);
+		token = custom_strtok(NULL, delim);
 	}
 	command = get_fullpath(argv[0]);
 	execute_command(command, argv);
