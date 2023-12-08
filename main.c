@@ -12,13 +12,12 @@ int main(void)
 	size_t bufSize = 0;
 	ssize_t read_count;
 
-	/* Check if running interactively */
 	if (isatty(STDIN_FILENO))
 	{	/* Interactive mode */
 		while (1)
 		{	/* Display the shell prompt */
 			display_prompt();
-			read_count = getline(&buffer, &bufSize, stdin);
+			read_count = custom_getline(&buffer, &bufSize, stdin);
 			if (custom_strcmp(buffer, "exit") == 0)
 			{
 				free(buffer);
