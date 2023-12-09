@@ -47,5 +47,9 @@ char *custom_strdup(char *str, int y);
 void free_double_p(char **str);
 int char_compare(char input_str[], const char *delim);
 char *custom_strtok(char input_str[], const char *delim);
+int _unsetenv(list_t **env, char *variable);
+int _setenv(list_t **env, char *variable, char *value);
+void _env(list_t *env);
+char *_strcat(char *dest, char *src);
 
 #endif
