@@ -8,8 +8,36 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <stdarg.h>
+#include <limits.h>
 
 #define BUFSIZE 1024
+/*structure to hold exit information*/
+/**
+ * struct info_t - singly linked list
+ * @tokens: array of strings
+ * @file: the filename
+ * @some_string: additional data
+ * @lineno: line number
+ * @fileno: an ineteger representing the file number
+ * @status: unsigned int representing the exit status
+ * @argv: argument vector
+ */
+typedef struct info_t
+{
+	char **tokens;
+	char *file;
+	char *some_string;
+	const char *argv;
+	size_t lineno;
+	int fileno;
+	unsigned int status;
+} info_t;
+bool _isnumber(const char *s);
+void _error(const char *name, size_t line, const char *msg, ...);
+unsigned int custom_atoi(char *s);
+void freeinfo(info_t *info);
+int exit(info_t *info);
 
 /**
  * struct list_s - singly linked list
