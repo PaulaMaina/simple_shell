@@ -80,5 +80,10 @@ int _setenv(list_t **env, char *variable, char *value);
 void _env(list_t *env);
 char *_strcat(char *dest, char *src);
 int cd_exec(info_t *env_data);
+void cd_dots(infot_t *env_data);
+void cd_prev(info_t *env_data);
+void cd_home(info_t *env_data);
+void cd_dir(info_t *env_data);
+void rev_str(char *str);
 
 #endif
