@@ -65,7 +65,7 @@ int custom_strcmp(char *s1, char *s2);
 void input_command(char *command);
 void fetch_line(char **line, size_t *line_size, char *buf, size_t buf_size);
 ssize_t custom_getline(char **line, size_t *line_size, FILE *stream);
-void custim_memcpy(void *dest_ptr, void *src_ptr, unsigned int size);
+void custom_memcpy(void *dest_ptr, void *src_ptr, unsigned int size);
 void *custom_realloc(void *memptr, unsigned int osize, unsigned int nsize);
 size_t print_list(list_t *h);
 list_t *add_end_node(list_t **head, char *str);
@@ -79,5 +79,6 @@ int _unsetenv(list_t **env, char *variable);
 int _setenv(list_t **env, char *variable, char *value);
 void _env(list_t *env);
 char *_strcat(char *dest, char *src);
+int cd_exec(info_t *env_data);
 
 #endif

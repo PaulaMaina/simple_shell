@@ -73,3 +73,33 @@ char *_strdup(char *str)
 	return (dup_str);
 	free(dup_str);
 }
+
+/**
+ * rev_str - reverses string
+ * @str: string to be reversed
+ *
+ */
+
+void rev_str(char *str)
+{
+	int len = 0, a, b;
+	char *s, temp_str;
+
+	while (len >= 0)
+	{
+		if (str[len] == '\0')
+			break;
+		len++
+	}
+	s = str;
+
+	for (a = 0; a < (len - 1); a++)
+	{
+		for (b = a + 1; b > 0; b++)
+		{
+			temp_str = *(s + b);
+			*(s + b) = *(s + (b - 1));
+			*(s + (b - 1)) = temp_str;
+		}
+	}
+}
