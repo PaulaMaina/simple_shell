@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include <limits.h>
+#include <stdbool.h>
 
 #define BUFSIZE 1024
 /*structure to hold exit information*/
@@ -33,11 +34,6 @@ typedef struct info_t
 	int fileno;
 	unsigned int status;
 } info_t;
-bool _isnumber(const char *s);
-void _error(const char *name, size_t line, const char *msg, ...);
-unsigned int custom_atoi(char *s);
-void freeinfo(info_t *info);
-int exit(info_t *info);
 
 /**
  * struct list_s - singly linked list
@@ -80,10 +76,15 @@ int _setenv(list_t **env, char *variable, char *value);
 void _env(list_t *env);
 char *_strcat(char *dest, char *src);
 int cd_exec(info_t *env_data);
-void cd_dots(infot_t *env_data);
+void cd_dots(info_t *env_data);
 void cd_prev(info_t *env_data);
 void cd_home(info_t *env_data);
 void cd_dir(info_t *env_data);
 void rev_str(char *str);
-
+bool _isnumber(const char *s);
+void custom_error(const char *name, size_t line, const char *msg, ...);
+unsigned int custom_atoi(char *s);
+void freeinfo(info_t *info);
+void custom_exit(info_t *info);
+char *num_to_str(size_t a);
 #endif

@@ -20,15 +20,16 @@ bool _isnumber(const char *s)
 		}
 		return (false);
 	}
+	return (0);
 }
 /**
- * _error - prints a message to standard error
+ * custom_error - prints a message to standard error
  * @name: vector
  * @line: line number where the error occured
  * @msg: error message
  * @...: additional arguments
  */
-void _error(const char *name, size_t line, const char *msg, ...)
+void custom_error(const char *name, size_t line, const char *msg, ...)
 {
 	va_list args;
 	char *linestr;
@@ -37,7 +38,7 @@ void _error(const char *name, size_t line, const char *msg, ...)
 	{
 		while (name)
 		{
-			write(STDERR_FILENO, arg0, 1);
+			write(STDERR_FILENO, args, 1);
 			name++;
 		}
 		write(STDERR_FILENO, ":", 1);
@@ -64,6 +65,8 @@ void _error(const char *name, size_t line, const char *msg, ...)
 	va_end(args);
 	write(STDERR_FILENO, "\n", 1);
 }
+
+
 /**
  * custom_atoi - function that converts a string to an integer
  * @s: string
@@ -116,11 +119,11 @@ void freeinfo(info_t *info)
 	free(info);
 }
 /**
- * exit - hendles the exit of a program form the shell
+ * custom_exit - hendles the exit of a program form the shell
  * @info: information passed
  * Return: no return value
  */
-int exit(info_t *info)
+void custom_exit(info_t *info)
 {
 	char **args = info->tokens + 1;
 	unsigned int status;
@@ -134,16 +137,15 @@ int exit(info_t *info)
 		}
 		else
 		{
-			_error(*info->argv, info->lineno, *args,
-					*info->tokens, "Illegal number", NULL);
+			custom_error(&info->argv[0], info->lineno, "%s: Illegal number", *args);
 			info->status = 2;
-			return (info->status);
 		}
 	}
 	if (info->file)
 	{
 		close(info->fileno);
 	}
-	exit(freeinfo(info));
+	freeinfo(info);
+	exit(info->status);
 }
 
