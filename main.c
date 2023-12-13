@@ -20,16 +20,12 @@ int main(void)
 			display_prompt();
 			read_count = custom_getline(&buffer, &bufSize, stdin);
 			if (custom_strcmp(buffer, "exit") == 0)
-			{
-				free(buffer);
-				exit(EXIT_SUCCESS);
-			}
+				free(buffer), exit(EXIT_SUCCESS);
 			else if (read_count == -1)
 			{	/* Handle end of file condition (Ctrl + D) */
 				if (feof(stdin))
 				{
-					_putchar('\n');
-					free(buffer), exit(EXIT_SUCCESS);
+					_putchar('\n'), free(buffer), exit(EXIT_SUCCESS);
 				}
 				else
 				{
@@ -39,16 +35,16 @@ int main(void)
 			}
 			buffer[read_count - 1] = '\0';
 			parse(buffer, read_count);
-			/* execute_command(buffer); */
 		}
 		env_list = NULL;
-
 		add_end_node(&env_list, "PATH=/usr/bin");
 		add_end_node(&env_list, "HOME=/home/user");
 		add_end_node(&env_list, "USER=user");
 	}
 	else
-	{	/* Non-interactive mode */
+	{
+		read_count = custom_getline(&buffer, &bufSize, stdin);
+		parse(buffer, read_count);
 	}
 	free(buffer);
 	return (0);
