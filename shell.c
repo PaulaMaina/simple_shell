@@ -5,7 +5,11 @@
  */
 void display_prompt(void)
 {
-	write(STDOUT_FILENO, "mainajay$ ", 10);
+	if(write(STDOUT_FILENO, "mainajay$ ", 11) == -1)
+	{
+		perror("write");
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
@@ -13,9 +17,9 @@ void display_prompt(void)
  * @name: program name
  * @message: error message
  */
-void _error(char *name, char *message)
+void _ferror(char *name)
 {
-	fprintf(stderr, "%s: %s\n", name, message);
+	perror(name);
 }
 /**
  * input_command - a function that executes the exit command
@@ -27,6 +31,24 @@ void input_command(char *command)
 	{
 		exit(EXIT_SUCCESS);
 	}
+}
+/**
+ * custom_strchr - locate character in string
+ * @str: pointer to the string
+ * @a: character to find
+ * Return: pointer to the first occurrence of a character or string or null
+ */
+char *custom_strchr(const char *str, int a)
+{
+	while (*str != (char)a)
+	{
+		if (*str == '\0')
+		{
+			return (NULL);
+		}
+		str++;
+	}
+	return ((char *)str);
 }
 
 /**
@@ -45,17 +67,16 @@ void parse(char *buffer, ssize_t nchars)
 	buffer_cpy = malloc(sizeof(char) * nchars);
 	if (buffer_cpy == NULL)
 	{
-		free(buffer);
-		perror("Memory allocation failed\n");
-		exit(98);
+		perror("malloc");
+		exit(EXIT_FAILURE);
 	}
 
 	_strcpy(buffer_cpy, buffer);
 	token = custom_strtok(buffer, delim);
-	while (token != NULL)
+	if (token_count == 0)
 	{
-		token_count++;
-		token = custom_strtok(NULL, delim);
+		free(buffer_cpy);
+		return;
 	}
 	token_count++;
 	argv = malloc(sizeof(char *) * token_count);
@@ -67,9 +88,16 @@ void parse(char *buffer, ssize_t nchars)
 		token = custom_strtok(NULL, delim);
 	}
 	command = get_fullpath(argv[0]);
-	if (command == NULL)
-		_ferror("Command not found");
+	if (custom_strchr(argv[0], ' ') != NULL)
+	{
+		perror("Error: Command should only be one word");
+		free(buffer_cpy);
+		free(argv);
+		free(command);
+		return;
+	}
 	execute_command(command, argv);
+	free(command);
 	free(argv);
 	free(buffer_cpy);
 }
