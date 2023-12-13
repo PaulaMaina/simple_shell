@@ -10,9 +10,9 @@
 
 int char_compare(char input_str[], const char *delim)
 {
-	unsigned int a, b, c = 0;
+	unsigned int a, b, c;
 
-	for (a = 0; input_str[a]; a++)
+	for (a = 0, c = 0; input_str[a]; a++)
 	{
 		for (b = 0; delim[b]; b++)
 		{

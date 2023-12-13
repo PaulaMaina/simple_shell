@@ -67,6 +67,8 @@ void parse(char *buffer, ssize_t nchars)
 		token = custom_strtok(NULL, delim);
 	}
 	command = get_fullpath(argv[0]);
+	if (command == NULL)
+		_ferror("Command not found");
 	execute_command(command, argv);
 	free(argv);
 	free(buffer_cpy);
