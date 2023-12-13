@@ -75,7 +75,6 @@ void parse(char *buffer, ssize_t nchars)
 	{
 		token_count++;
 		token = custom_strtok(NULL, delim);
-
 	}
 	token_count++;
 	argv = malloc(sizeof(char *) * token_count);
@@ -94,7 +93,6 @@ void parse(char *buffer, ssize_t nchars)
 		free(command);
 		return;
 	}
-	
 	execute_command(command, argv);
 	free(command);
 	free(argv);
