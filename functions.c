@@ -89,7 +89,7 @@ void rev_str(char *str)
 	{
 		if (str[len] == '\0')
 			break;
-		len++
+		len++;
 	}
 	s = str;
 

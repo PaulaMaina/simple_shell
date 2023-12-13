@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * _env - Implements the env built-in command
  * @env: A linked list representing the environment variables
