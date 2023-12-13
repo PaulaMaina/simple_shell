@@ -47,7 +47,7 @@ typedef struct list_s
 } list_t;
 
 void display_prompt(void);
-void _error(char *name, char *message);
+void _ferror(char *name);
 void execute_command(char *command, char **argv);
 int _putchar(char c);
 int _printstr(char *str);

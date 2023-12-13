@@ -13,9 +13,9 @@ void display_prompt(void)
  * @name: program name
  * @message: error message
  */
-void _error(char *name, char *message)
+void _ferror(char *name)
 {
-	fprintf(stderr, "%s: %s\n", name, message);
+	perror(name);
 }
 /**
  * input_command - a function that executes the exit command
