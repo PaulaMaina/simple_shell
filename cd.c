@@ -25,7 +25,7 @@ void cd_dots(info_t *env_data, list_t **env_var)
 		free(parent_cp);
 	parent_strtok = parent_cp;
 	rev_str(parent_strtok);
-	parent_strtok = custom_strtok(parent_strtok, "/");
+	parent_strtok = strtok(parent_strtok, "/");
 	if (parent_strtok != NULL)
 	{
 		chdir(parent_strtok);

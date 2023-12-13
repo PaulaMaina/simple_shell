@@ -18,7 +18,7 @@ int main(void)
 		while (1)
 		{	/* Display the shell prompt */
 			display_prompt();
-			read_count = custom_getline(&buffer, &bufSize, stdin);
+			read_count = getline(&buffer, &bufSize, stdin);
 			if (custom_strcmp(buffer, "exit") == 0)
 				free(buffer), exit(EXIT_SUCCESS);
 			else if (read_count == -1)
@@ -43,7 +43,7 @@ int main(void)
 	}
 	else
 	{
-		read_count = custom_getline(&buffer, &bufSize, stdin);
+		read_count = getline(&buffer, &bufSize, stdin);
 		parse(buffer, read_count);
 	}
 	free(buffer);
