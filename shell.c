@@ -5,7 +5,7 @@
  */
 void display_prompt(void)
 {
-	if(write(STDOUT_FILENO, "mainajay$ ", 11) == -1)
+	if (write(STDOUT_FILENO, "mainajay$ ", 11) == -1)
 	{
 		perror("write");
 		exit(EXIT_FAILURE);
@@ -13,9 +13,8 @@ void display_prompt(void)
 }
 
 /**
- * _error - handles errors
+ * _ferror - handles errors
  * @name: program name
- * @message: error message
  */
 void _ferror(char *name)
 {
@@ -91,8 +90,7 @@ void parse(char *buffer, ssize_t nchars)
 	if (custom_strchr(argv[0], ' ') != NULL)
 	{
 		perror("Error: Command should only be one word");
-		free(buffer_cpy);
-		free(argv);
+		free(buffer_cpy), free(argv);
 		free(command);
 		return;
 	}
