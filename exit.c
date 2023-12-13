@@ -137,7 +137,7 @@ void custom_exit(info_t *info)
 		}
 		else
 		{
-			custom_error(&info->argv[0], info->lineno, "%s: Illegal number", *args);
+			custom_error(info->argv[0], info->lineno, "%s: Illegal number", *args);
 			info->status = 2;
 		}
 	}
