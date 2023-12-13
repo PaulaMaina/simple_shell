@@ -69,13 +69,13 @@ void parse(char *buffer, ssize_t nchars)
 		perror("malloc");
 		exit(EXIT_FAILURE);
 	}
-
 	_strcpy(buffer_cpy, buffer);
 	token = custom_strtok(buffer, delim);
-	if (token_count == 0)
+	while (token != NULL)
 	{
-		free(buffer_cpy);
-		return;
+		token_count++;
+		token = custom_strtok(NULL, delim);
+
 	}
 	token_count++;
 	argv = malloc(sizeof(char *) * token_count);
@@ -94,6 +94,7 @@ void parse(char *buffer, ssize_t nchars)
 		free(command);
 		return;
 	}
+	
 	execute_command(command, argv);
 	free(command);
 	free(argv);
