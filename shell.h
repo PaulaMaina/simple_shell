@@ -51,6 +51,7 @@ void _ferror(char *name);
 void execute_command(char *command, char **argv);
 int _putchar(char c);
 int _printstr(char *str);
+char *custom_strchr(const char *str, int a);
 void parse(char *buffer, ssize_t nchars);
 int _strlen(char *str);
 char *get_fullpath(char *command);
