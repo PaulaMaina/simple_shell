@@ -58,12 +58,15 @@ char *custom_strchr(const char *str, int a)
 
 void parse(char *buffer, ssize_t nchars)
 {
-	char *token, *delim = " \n", *buffer_cpy = NULL;
+	char *token = NULL;
+	char *delim = " \n";
+	char *buffer_cpy = NULL;
 	int token_count, i;
-	char **argv, *command = NULL;
+	char **argv = NULL;
+	char *command = NULL;
 
 	token_count = 0;
-	buffer_cpy = malloc(sizeof(char) * nchars);
+	buffer_cpy = malloc(sizeof(char) * (nchars + 1));
 	if (buffer_cpy == NULL)
 	{
 		perror("malloc");
@@ -85,6 +88,7 @@ void parse(char *buffer, ssize_t nchars)
 		_strcpy(argv[i], token);
 		token = strtok(NULL, delim);
 	}
+	argv[i] = NULL;
 	command = get_fullpath(argv[0]);
 	if (custom_strchr(argv[0], ' ') != NULL)
 	{
