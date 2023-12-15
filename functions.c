@@ -62,16 +62,19 @@ char *_strdup(char *str)
 	length = _strlen(str);
 	dup_str = malloc(sizeof(char) * (length + 1));
 
+	if (dup_str == NULL)
+	{
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
+
 	for (c = 0; c < length; c++)
 	{
-		if (dup_str == NULL)
-			return (NULL);
 		dup_str[c] = str[c];
 	}
 	dup_str[c] = '\0';
 
 	return (dup_str);
-	free(dup_str);
 }
 
 /**

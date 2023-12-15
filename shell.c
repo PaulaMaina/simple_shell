@@ -5,11 +5,7 @@
  */
 void display_prompt(void)
 {
-	if (write(STDOUT_FILENO, "mainajay$ ", 11) == -1)
-	{
-		perror("write");
-		exit(EXIT_FAILURE);
-	}
+	_printstr("Mainajay$ ");
 }
 
 /**
@@ -64,6 +60,7 @@ void parse(char *buffer, ssize_t nchars)
 	int token_count, i;
 	char **argv = NULL;
 	char *command = NULL;
+	int j;
 
 	token_count = 0;
 	buffer_cpy = malloc(sizeof(char) * (nchars + 1));
@@ -81,10 +78,28 @@ void parse(char *buffer, ssize_t nchars)
 	}
 	token_count++;
 	argv = malloc(sizeof(char *) * token_count);
+	if (argv == NULL)
+	{
+		perror("malloc");
+		free(buffer_cpy);
+		exit(EXIT_FAILURE);
+	}
 	token = strtok(buffer_cpy, delim);
 	for (i = 0; token != NULL; i++)
 	{
 		argv[i] = malloc(sizeof(char) * (_strlen(token) + 1));
+		if (argv[i] == NULL)
+		{
+			perror("malloc");
+			free(buffer_cpy);
+			for (j = 0; j < i; j++)
+			{
+				free(argv[j]);
+				argv[j] = NULL;
+			}
+			free(argv);
+			return;
+		}
 		_strcpy(argv[i], token);
 		token = strtok(NULL, delim);
 	}
@@ -92,13 +107,24 @@ void parse(char *buffer, ssize_t nchars)
 	command = get_fullpath(argv[0]);
 	if (custom_strchr(argv[0], ' ') != NULL)
 	{
-		perror("Error: Command should only be one word");
-		free(buffer_cpy), free(argv);
+		perror("Error: Command should only be one word\n");
+		free(buffer_cpy);
+		for (j = 0; j < i; j++)
+		{
+			free(argv[j]);
+		}
+		free(argv);
 		free(command);
 		return;
 	}
 	execute_command(command, argv);
 	free(command);
+	for (j = 0; j < i; j++)
+	{
+		free(argv[j]);
+		argv[j] = NULL;
+	}
 	free(argv);
 	free(buffer_cpy);
 }
+
