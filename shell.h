@@ -44,6 +44,6 @@ list_t *add_end_node(list_t **head, char *str);
 int delete_nodeint_at_index(list_t **head, int index);
 char *custom_strdup(char *str, int y);
 char *find_env(char *str, list_t *env);
-void free_args(char *args[]); /* function prototype for free_args*/
+void free_args(char *args[]);
 
 #endif /* SHELL_H */

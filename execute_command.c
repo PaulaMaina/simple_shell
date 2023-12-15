@@ -12,7 +12,6 @@ int execute_command(char *full_path, char **argv, char *command, char *cpy_c)
 {
 	pid_t pid;
 	int exec_status;
-	extern char **environ;
 
 	pid = fork();
 

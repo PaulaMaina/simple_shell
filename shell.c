@@ -5,7 +5,7 @@
  */
 void display_prompt(void)
 {
-	_printstr("Mainajay$ ");
+	_printstr("$ ");
 }
 
 /**
@@ -82,13 +82,13 @@ int parse(char *buffer, ssize_t nchars)
 */
 void free_args(char *args[])
 {
-        int i;
+	int i;
 
-        for (i = 0; args[i] != NULL; i++)
-        {
-                free(args[i]);
-        }
-        free(args[i]);
-        free(args);
+	for (i = 0; args[i] != NULL; i++)
+	{
+		free(args[i]);
+	}
+	free(args[i]);
+	free(args);
 }
 
