@@ -128,4 +128,3 @@ void free_list_t(list_t *list)
 		free(temp);
 	}
 }
-

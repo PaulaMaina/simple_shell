@@ -3,10 +3,8 @@
 /**
  * _putchar - prints a character
  * @c: character to be printed
- *
  * Return: character
  */
-
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
@@ -15,10 +13,8 @@ int _putchar(char c)
 /**
  * _printstr - prints a string
  * @str: string to be printed
- *
  * Return: string
  */
-
 int _printstr(char *str)
 {
 	int count = 0, c;
@@ -32,10 +28,8 @@ int _printstr(char *str)
 /**
  * _strlen - calculates the length of a string
  * @str: string
- *
  * Return: string length
  */
-
 int _strlen(char *str)
 {
 	int len;
@@ -48,10 +42,8 @@ int _strlen(char *str)
 /**
  * _strdup - duplicates a string
  * @str: string to be duplicated
- *
  * Return: pointer to the duplicate string
  */
-
 char *_strdup(char *str)
 {
 	char *dup_str;
@@ -80,9 +72,7 @@ char *_strdup(char *str)
 /**
  * rev_str - reverses string
  * @str: string to be reversed
- *
  */
-
 void rev_str(char *str)
 {
 	int len = 0, a, b;
@@ -106,3 +96,4 @@ void rev_str(char *str)
 		}
 	}
 }
+
