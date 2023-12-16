@@ -5,7 +5,7 @@
  */
 void display_prompt(void)
 {
-	_printstr("$ ");
+	_printstr("Mainajay$ ");
 }
 
 /**
