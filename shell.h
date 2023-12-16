@@ -10,6 +10,8 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+#define BUFSIZE 1024
+
 extern char **environ;
 
 /**
@@ -45,5 +47,10 @@ int delete_nodeint_at_index(list_t **head, int index);
 char *custom_strdup(char *str, int y);
 char *find_env(char *str, list_t *env);
 void free_args(char *args[]);
-
+ssize_t custom_getline(char **line, size_t *line_size, FILE *stream);
+void fetch_line(char **line, size_t *line_size, char *buf, size_t buf_size);
+void custom_memcpy(void *dest_ptr, void *src_ptr, unsigned int size);
+void *custom_realloc(void *memptr, unsigned int osize, unsigned int nsize);
+int char_compare(char input_str[], const char *delim);
+char *custom_strtok(char input_str[], const char *delim);
 #endif /* SHELL_H */
